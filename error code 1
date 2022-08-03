@@ -1,0 +1,48 @@
+local preflix = "/"
+local Admins = {
+	[3728787381] = true,
+	[2243604920] = true,
+	[1479674858] = true
+}
+
+local Worker = {
+	
+}
+
+local commands = {}
+
+commands.promote = function(sender, args)
+	if Admins[sender.UserId] then
+	for i, playerName in pairs(args) do
+		
+		table.insert(Worker, args[1])
+			print("Done")
+			game.Workspace:FindFirstChild(args[1]).Head.c2.Textlabel.Text = "Worker"
+		end
+		end
+
+
+end
+
+
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.Chatted:Connect(function(msg, recipient)
+
+		msg = string.lower(msg)
+
+		local ss = msg:split(" ")
+		local slashcmd = ss[1] --/promote
+		local cmd = slashcmd:split(preflix)
+		local cmdName = cmd[2]
+
+		if commands[cmdName] then
+
+			local args = {}
+			for i = 2, #ss, 1 do
+				table.insert(args, ss[i])
+			end
+			commands[cmdName](plr, args)
+		end
+
+	end)
+end)
