@@ -1,0 +1,17 @@
+
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.Chatted:Connect(function(msg)
+		local activate = false
+		if msg == "start" then
+			activate = true
+			while activate == true do
+				wait(0.5)
+				script.Parent.Position = Vector3.new(script.Parent.Position.X +1)
+			end
+		else if msg == "stop" then
+				activate = false
+				
+			end
+	end
+	end)
+end)
